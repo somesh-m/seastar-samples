@@ -22,6 +22,7 @@ mkdir build && cd build
 cmake ..
 make
 ./example --smp 4
+```
 
 ## 🧑‍💻 Author  
 **Somesh Mohan**  
