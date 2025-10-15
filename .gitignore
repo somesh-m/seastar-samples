@@ -1,0 +1,35 @@
+# Global build/output
+/build/
+/out/
+/dist/
+/.tmp/
+/.cache/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake-build-*/
+Makefile
+install_manifest.txt
+compile_commands.json
+
+# Binaries & objs
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+*.log
+*.core
+
+# IDEs
+.vscode/
+.idea/
+*.user
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
