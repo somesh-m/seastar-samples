@@ -83,38 +83,10 @@ seastar::future<> init() {
         (void)seastar::with_gate(g, [l = std::move(listener), port]() mutable {
             return accept_forever(std::move(l), port, as);
         });
-        // while (true) {
-        //     try {
-        //         auto result = co_await server_socket.accept();
-        //         m_logger.info("Accepted on port {}", result.remote_address);
-        //     } catch (...) {
-        //         std::cerr << "Error while starting listeners on shard 0: "
-        //                   << std::current_exception() << "\n";
-        //     }
-        // }
-        // (void)seastar::keep_doing(
-        //     [server_socket = std::move(server_socket), port]() mutable {
-        //         return server_socket.accept()
-        //             .then([port](seastar::accept_result ar) {
-        //                 auto sid = this_shard_id(); // destination shard id
-        //                 std::cout << "Accepted on port " << port << " ->shard
-        //                 "
-        //                           << sid << "\n";
-        //                 auto peer = ar.remote_address;
-        //                 std::cout << "Remote address: " << peer << "\n";
-        //                 // return store.local().handle_session(
-        //                 //     std::move(ar.connection), peer, port);
-        //             })
-        //             .handle_exception([](std::exception_ptr e) {
-        //                 std::cout << "Accept failed: " << e << "\n";
-        //             });
-        //     });
     }
 
     m_logger.info("Starting service");
     co_await service.start(base_port);
     co_await service.invoke_on_others(&service::start);
     m_logger.info("Service started");
-
-    // co_await seastar::sleep(std::chrono::hours(24));
 }
